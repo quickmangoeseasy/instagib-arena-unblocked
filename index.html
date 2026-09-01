@@ -1,564 +1,255 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mango Learning | Smarter Learning Starts Here</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+    <title>Verification | MangoLearning</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f5f7fa;
+
+            color: #182230;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 430px;
+
+            padding: 42px;
+
+            text-align: center;
+
+            background: white;
+
+            border: 1px solid #e2e7ee;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 25px 70px
+                rgba(20, 30, 45, .10);
+        }
+
+        .icon {
+            width: 64px;
+            height: 64px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 18px;
+
+            background: #eef3ff;
+
+            font-size: 28px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+
+            font-size: 30px;
+
+            letter-spacing: -1px;
+        }
+
+        p {
+            color: #718092;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+        .status {
+            margin-top: 25px;
+
+            padding: 13px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        .success {
+            background: #eaf8ef;
+            color: #237a45;
+        }
+
+        .failure {
+            background: #fff0ef;
+            color: #b42318;
+        }
+
+        .button {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            background: #182230;
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <!-- ============================= -->
-    <!-- NAVIGATION -->
-    <!-- ============================= -->
 
-    <header class="navbar">
+<div class="card">
 
-        <div class="logo">
-            Mango<span>Learning</span>
-        </div>
+    <div class="icon">
+        ✓
+    </div>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="#features">Features</a>
-            <a href="about.html">About</a>
-            <a href="#pricing">Pricing</a>
-            <a class="nav-button" href="login.html">
-                Sign In
-            </a>
-        </nav>
+    <h1>
+        Verifying access
+    </h1>
 
-    </header>
+    <p id="description">
+        Checking where you came from...
+    </p>
 
+    <div id="status"
+         class="status">
+    </div>
 
-    <!-- ============================= -->
-    <!-- HERO -->
-    <!-- ============================= -->
+    <a
+        id="continueButton"
+        class="button"
+        href="index.html"
+        style="display:none;">
 
-    <section class="hero">
+        Continue →
 
-        <div class="hero-content">
+    </a>
 
-            <div class="announcement">
-                ✨ The future of personalized learning is here
-            </div>
+</div>
 
-            <h1>
-                Learning that
-                <span>grows with you.</span>
-            </h1>
 
-            <p>
-                Mango Learning is a next-generation educational platform
-                designed to help students build confidence, strengthen
-                essential skills, and turn everyday practice into meaningful
-                academic progress.
-            </p>
 
-            <div class="hero-buttons">
+<script>
 
-                <a class="primary-button" href="login.html">
-                    Start Free Trial →
-                </a>
+    /*
+     * Only allow visitors whose referrer
+     * is mathpy.vercel.app
+     */
 
-                <a class="secondary-button" href="about.html">
-                    Explore Mango Learning
-                </a>
+    const allowedHost = "mathpy.vercel.app";
 
-            </div>
 
-            <div class="trust-row">
+    const referrer =
+        document.referrer;
 
-                <div>
-                    <strong>10M+</strong>
-                    <small>Learning Sessions</small>
-                </div>
 
-                <div>
-                    <strong>98%</strong>
-                    <small>Student Satisfaction</small>
-                </div>
+    const status =
+        document.getElementById("status");
 
-                <div>
-                    <strong>24/7</strong>
-                    <small>Learning Access</small>
-                </div>
 
-            </div>
+    const description =
+        document.getElementById("description");
 
-        </div>
 
+    const continueButton =
+        document.getElementById("continueButton");
 
-        <!-- HERO DASHBOARD PREVIEW -->
 
-        <div class="hero-preview">
+    let cameFromMathPy = false;
 
-            <div class="preview-window">
 
-                <div class="preview-top">
+    try {
 
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+        if (referrer) {
 
-                </div>
+            const referrerURL =
+                new URL(referrer);
 
-                <div class="preview-body">
+            cameFromMathPy =
+                referrerURL.hostname === allowedHost;
 
-                    <p class="small-label">
-                        TODAY'S PROGRESS
-                    </p>
+        }
 
-                    <h2>
-                        You're on a roll! 🔥
-                    </h2>
+    } catch (error) {
 
-                    <div class="big-progress">
+        cameFromMathPy = false;
 
-                        <div class="progress-fill"
-                             style="width: 74%;">
-                        </div>
+    }
 
-                    </div>
 
-                    <div class="progress-info">
-                        <span>74% complete</span>
-                        <span>12 / 16 skills</span>
-                    </div>
+    if (cameFromMathPy) {
 
+        status.textContent =
+            "✓ Verification successful";
 
-                    <div class="mini-cards">
+        status.classList.add("success");
 
-                        <div>
-                            <span>📐</span>
-                            <strong>Math</strong>
-                            <small>82%</small>
-                        </div>
+        description.textContent =
+            "Your visit originated from mathpy.vercel.app.";
 
-                        <div>
-                            <span>📚</span>
-                            <strong>Language</strong>
-                            <small>71%</small>
-                        </div>
+        continueButton.style.display =
+            "inline-block";
 
-                        <div>
-                            <span>🔬</span>
-                            <strong>Science</strong>
-                            <small>64%</small>
-                        </div>
+    }
 
-                    </div>
+    else {
 
-                </div>
+        status.textContent =
+            "✕ Verification failed";
 
-            </div>
+        status.classList.add("failure");
 
-        </div>
+        description.textContent =
+            "This page can only be accessed from mathpy.vercel.app.";
 
-    </section>
+    }
 
+</script>
 
-    <!-- ============================= -->
-    <!-- FEATURES -->
-    <!-- ============================= -->
-
-    <section id="features" class="section">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                WHY MANGO
-            </p>
-
-            <h2>
-                Built around the way students learn.
-            </h2>
-
-            <p>
-                Our platform combines intelligent practice, immediate
-                feedback, and progress insights into one streamlined
-                learning experience.
-            </p>
-
-        </div>
-
-
-        <div class="feature-grid">
-
-            <article class="feature-card">
-
-                <div class="feature-icon">🎯</div>
-
-                <h3>Personalized Practice</h3>
-
-                <p>
-                    Learning experiences adapt to each student's progress,
-                    helping them focus their time where it can have the
-                    greatest academic impact.
-                </p>
-
-                <a href="about.html">
-                    Learn more →
-                </a>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">⚡</div>
-
-                <h3>Instant Feedback</h3>
-
-                <p>
-                    Students receive immediate feedback so they can
-                    understand mistakes, correct misconceptions, and
-                    continue learning without unnecessary interruptions.
-                </p>
-
-                <a href="about.html">
-                    Learn more →
-                </a>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">📈</div>
-
-                <h3>Meaningful Progress</h3>
-
-                <p>
-                    Clear progress indicators transform practice sessions
-                    into measurable milestones students can understand
-                    and celebrate.
-                </p>
-
-                <a href="about.html">
-                    Learn more →
-                </a>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">🧠</div>
-
-                <h3>Skill-Based Learning</h3>
-
-                <p>
-                    Instead of treating learning as a single score, Mango
-                    organizes academic development into individual skills
-                    that can be practiced and mastered.
-                </p>
-
-                <a href="about.html">
-                    Learn more →
-                </a>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">🌎</div>
-
-                <h3>Learn Anywhere</h3>
-
-                <p>
-                    A flexible browser-based experience allows students to
-                    continue learning across supported devices wherever
-                    their schedule takes them.
-                </p>
-
-                <a href="about.html">
-                    Learn more →
-                </a>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">🏆</div>
-
-                <h3>Celebrate Achievement</h3>
-
-                <p>
-                    Milestones, streaks, and achievement indicators give
-                    students positive reminders of how far they've come.
-                </p>
-
-                <a href="about.html">
-                    Learn more →
-                </a>
-
-            </article>
-
-        </div>
-
-    </section>
-
-
-    <!-- ============================= -->
-    <!-- CORPORATE SECTION -->
-    <!-- ============================= -->
-
-    <section class="corporate">
-
-        <div class="corporate-inner">
-
-            <p class="eyebrow">
-                OUR MISSION
-            </p>
-
-            <h2>
-                We believe every student deserves
-                a learning experience designed for them.
-            </h2>
-
-            <p>
-                Mango Learning was founded around a simple idea:
-                educational technology should make learning more
-                understandable, approachable, and engaging.
-            </p>
-
-            <p>
-                Our multidisciplinary teams continuously explore new
-                approaches to personalized instruction, skill development,
-                accessibility, and student engagement. By combining
-                thoughtful educational design with modern technology,
-                we strive to create experiences that empower learners
-                to take ownership of their academic journey.
-            </p>
-
-            <a class="primary-button" href="about.html">
-                Discover Our Mission →
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- ============================= -->
-    <!-- PRICING -->
-    <!-- ============================= -->
-
-    <section id="pricing" class="section pricing-section">
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                SIMPLE PLANS
-            </p>
-
-            <h2>
-                Start learning today.
-            </h2>
-
-            <p>
-                Choose the experience that fits your learning goals.
-            </p>
-
-        </div>
-
-
-        <div class="pricing-grid">
-
-
-            <div class="pricing-card">
-
-                <h3>Starter</h3>
-
-                <p class="price">
-                    Free
-                </p>
-
-                <p>
-                    A simple way to explore the Mango Learning experience.
-                </p>
-
-                <ul>
-                    <li>✓ Core practice activities</li>
-                    <li>✓ Basic progress tracking</li>
-                    <li>✓ Selected subjects</li>
-                    <li>✓ Student dashboard</li>
-                </ul>
-
-                <a class="secondary-button full"
-                   href="login.html">
-                    Get Started
-                </a>
-
-            </div>
-
-
-            <div class="pricing-card featured">
-
-                <div class="popular">
-                    MOST POPULAR
-                </div>
-
-                <h3>Explorer</h3>
-
-                <p class="price">
-                    $9.99
-                    <small>/ month</small>
-                </p>
-
-                <p>
-                    A deeper learning experience designed for consistent
-                    practice and measurable progress.
-                </p>
-
-                <ul>
-                    <li>✓ Unlimited practice</li>
-                    <li>✓ Full subject library</li>
-                    <li>✓ Detailed progress insights</li>
-                    <li>✓ Achievement tracking</li>
-                    <li>✓ Personalized recommendations</li>
-                </ul>
-
-                <a class="primary-button full"
-                   href="login.html">
-                    Start Free Trial
-                </a>
-
-            </div>
-
-
-            <div class="pricing-card">
-
-                <h3>Pro</h3>
-
-                <p class="price">
-                    $19.99
-                    <small>/ month</small>
-                </p>
-
-                <p>
-                    Advanced tools for learners looking to maximize their
-                    practice and organization.
-                </p>
-
-                <ul>
-                    <li>✓ Everything in Explorer</li>
-                    <li>✓ Advanced analytics</li>
-                    <li>✓ Expanded practice tools</li>
-                    <li>✓ Priority platform support</li>
-                    <li>✓ Advanced learning insights</li>
-                </ul>
-
-                <a class="secondary-button full"
-                   href="login.html">
-                    Explore Pro
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ============================= -->
-    <!-- FINAL CTA -->
-    <!-- ============================= -->
-
-    <section class="cta">
-
-        <h2>
-            Your next breakthrough could
-            start today.
-        </h2>
-
-        <p>
-            Build skills. Track progress. Keep moving forward.
-        </p>
-
-        <a class="primary-button" href="login.html">
-            Start Learning →
-        </a>
-
-    </section>
-
-
-    <!-- ============================= -->
-    <!-- FOOTER -->
-    <!-- ============================= -->
-
-    <footer>
-
-        <div class="footer-main">
-
-            <div>
-
-                <div class="logo">
-                    Mango<span>Learning</span>
-                </div>
-
-                <p>
-                    Empowering students through personalized,
-                    accessible learning technology.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <h4>Platform</h4>
-
-                <a href="#features">Features</a>
-                <a href="#pricing">Pricing</a>
-                <a href="login.html">Sign In</a>
-
-            </div>
-
-
-            <div>
-
-                <h4>Company</h4>
-
-                <a href="about.html">About</a>
-                <a href="about.html">Our Mission</a>
-                <a href="about.html">Careers</a>
-
-            </div>
-
-
-            <div>
-
-                <h4>Support</h4>
-
-                <a href="about.html">Help Center</a>
-                <a href="about.html">Contact</a>
-                <a href="about.html">Accessibility</a>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <span>
-                © 2026 Mango Learning. Fictional demonstration website.
-            </span>
-
-            <span>
-                Built for learning.
-            </span>
-
-        </div>
-
-    </footer>
 
 </body>
+
 </html>
+```
+
