@@ -1,0 +1,1627 @@
+<!-- well shi bro ts was made by ai
+im lowk dumb af -->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MathPy — High Performance Mathematical Computing</title>
+
+  <meta
+    name="description"
+    content="MathPy is a high-performance Python library for solving mathematical problems at extreme speed."
+  >
+
+  <style>
+    :root {
+      --bg: #f7f9fb;
+      --panel: #ffffff;
+      --nav: #17212b;
+      --text: #202830;
+      --muted: #687580;
+      --border: #dce3e8;
+      --blue: #1688c7;
+      --blue-dark: #0d6d9f;
+      --blue-light: #e8f6fd;
+      --green: #20a464;
+      --red: #d9534f;
+      --code: #111820;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* NAVIGATION */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(23, 33, 43, .97);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      height: 68px;
+      padding: 0 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      color: white;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -.3px;
+      cursor: pointer;
+    }
+
+    .brand-mark {
+      width: 31px;
+      height: 31px;
+      border-radius: 7px;
+
+      display: grid;
+      place-items: center;
+
+      color: white;
+      background: var(--blue);
+      font-family: Georgia, serif;
+      font-weight: bold;
+    }
+
+    .brand span {
+      color: #55bdf0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: #b7c2cb;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color .15s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-button {
+      background: var(--blue);
+      color: white !important;
+      padding: 9px 15px;
+      border-radius: 5px;
+      font-weight: 600;
+    }
+
+    .nav-button:hover {
+      background: #2499d9;
+    }
+
+    /* GENERAL */
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-header {
+      margin-bottom: 35px;
+    }
+
+    .section-header h2 {
+      font-size: 34px;
+      line-height: 1.2;
+      margin-bottom: 9px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 105px 0 95px;
+      background:
+        radial-gradient(
+          circle at 80% 30%,
+          rgba(22,136,199,.13),
+          transparent 35%
+        ),
+        linear-gradient(#fff, #f7f9fb);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      border: 1px solid #c8e8f7;
+
+      padding: 6px 11px;
+      border-radius: 20px;
+
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+
+      margin-bottom: 20px;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 6vw, 72px);
+      line-height: .98;
+      letter-spacing: -2.5px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero-description {
+      color: #5f6c76;
+      font-size: 18px;
+      max-width: 650px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      margin-top: 32px;
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+      border-radius: 6px;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: .15s;
+    }
+
+    .button-primary {
+      background: var(--blue);
+      color: white;
+    }
+
+    .button-primary:hover {
+      background: var(--blue-dark);
+    }
+
+    .button-secondary {
+      background: white;
+      border-color: var(--border);
+      color: #34404a;
+    }
+
+    .button-secondary:hover {
+      background: #f2f5f7;
+    }
+
+    /* TERMINAL */
+
+    .terminal {
+      background: var(--code);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 20px 55px rgba(0,0,0,.16);
+    }
+
+    .terminal-top {
+      height: 38px;
+      background: #1b242d;
+
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .terminal-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #55616b;
+    }
+
+    .terminal-title {
+      margin-left: 7px;
+      color: #7e8a94;
+      font-family: monospace;
+      font-size: 11px;
+    }
+
+    .terminal-code {
+      padding: 24px;
+      font-family: "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.9;
+      color: #c9d4dc;
+      overflow-x: auto;
+    }
+
+    .syntax-blue {
+      color: #62c9f2;
+    }
+
+    .syntax-green {
+      color: #9be28a;
+    }
+
+    .syntax-yellow {
+      color: #e9d87a;
+    }
+
+    .syntax-purple {
+      color: #c79bea;
+    }
+
+    /* STATS */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: white;
+    }
+
+    .stat {
+      padding: 27px 20px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--blue);
+      font-size: 25px;
+      margin-bottom: 2px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    /* CARDS */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 27px;
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 7px;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--blue-light);
+      color: var(--blue);
+
+      margin-bottom: 18px;
+      font-size: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* BENCHMARK */
+
+    .benchmark {
+      background: #111820;
+      color: white;
+    }
+
+    .benchmark .section-header h2 {
+      color: white;
+    }
+
+    .benchmark .section-header p {
+      color: #8997a3;
+    }
+
+    .benchmark-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #18212a;
+    }
+
+    .benchmark-table th,
+    .benchmark-table td {
+      text-align: left;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .benchmark-table th {
+      color: #8d9aa5;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .benchmark-table td {
+      font-family: monospace;
+      font-size: 13px;
+      color: #d5dde3;
+    }
+
+    .fast {
+      color: #71df98 !important;
+      font-weight: bold;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .about-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 30px;
+    }
+
+    .about-box h3 {
+      margin-bottom: 10px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .timeline {
+      margin-top: 30px;
+      border-left: 2px solid #d7e5ed;
+      padding-left: 25px;
+    }
+
+    .timeline-item {
+      margin-bottom: 27px;
+    }
+
+    .timeline-item strong {
+      display: block;
+      color: var(--blue);
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .timeline-item h4 {
+      margin-bottom: 4px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* DISCUSSIONS */
+
+    .forum {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .forum-header {
+      padding: 17px 20px;
+      background: #f8fafb;
+      border-bottom: 1px solid var(--border);
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .forum-header strong {
+      font-size: 14px;
+    }
+
+    .online {
+      color: var(--green);
+      font-size: 12px;
+    }
+
+    .thread {
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background .12s;
+    }
+
+    .thread:last-child {
+      border-bottom: 0;
+    }
+
+    .thread:hover {
+      background: #fafcfd;
+    }
+
+    .thread-title {
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .thread-meta {
+      color: #8a959e;
+      font-size: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      border-radius: 4px;
+      padding: 2px 6px;
+      margin-right: 7px;
+
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    /* FAQ */
+
+    .faq {
+      max-width: 800px;
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      margin-bottom: 10px;
+      padding: 18px 20px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    details p {
+      color: var(--muted);
+      margin-top: 13px;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #17212b;
+      color: #82909b;
+      padding: 45px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 35px;
+    }
+
+    footer h4 {
+      color: white;
+      font-size: 13px;
+      margin-bottom: 13px;
+    }
+
+    footer a {
+      display: block;
+      color: #82909b;
+      text-decoration: none;
+      font-size: 13px;
+      margin-bottom: 7px;
+      cursor: pointer;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .footer-description {
+      max-width: 320px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .copyright {
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      font-size: 11px;
+      color: #61707c;
+    }
+
+    /* MODAL */
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+
+      background: rgba(5,10,14,.72);
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(480px, 100%);
+      background: white;
+      border-radius: 9px;
+      padding: 30px;
+      box-shadow: 0 25px 80px rgba(0,0,0,.3);
+    }
+
+    .modal-box h3 {
+      margin-bottom: 8px;
+    }
+
+    .modal-box p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccd5db;
+      border-radius: 5px;
+      outline: none;
+      font-family: monospace;
+      margin-bottom: 12px;
+    }
+
+    .modal-input:focus {
+      border-color: var(--blue);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .nav-links a:not(.nav-button) {
+        display: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero {
+        padding: 65px 0;
+      }
+
+      .hero h1 {
+        font-size: 46px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+
+    <div class="brand" onclick="showPage('home')">
+      <div class="brand-mark">∑</div>
+      Math<span>Py</span>
+    </div>
+
+    <div class="nav-links">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('about')">About</a>
+      <a onclick="showPage('discussions')">Discussions</a>
+      <a onclick="showPage('docs')">Documentation</a>
+      <a class="nav-button" onclick="openDownload()">Download</a>
+    </div>
+
+  </nav>
+</header>
+
+
+<main>
+
+  <!-- HOME -->
+
+  <section id="home" class="page active">
+
+    <div class="hero">
+      <div class="container hero-grid">
+
+        <div>
+
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            MathPy 4.8 is now available
+          </div>
+
+          <h1>
+            Mathematical computing at
+            <span>ridiculous speed.</span>
+          </h1>
+
+          <p class="hero-description">
+            MathPy is a high-performance Python library for solving equations,
+            evaluating mathematical expressions, simplifying symbolic problems,
+            and processing numerical workloads thousands of times faster than
+            traditional implementations.
+          </p>
+
+          <div class="hero-buttons">
+            <button class="button button-primary" onclick="openDownload()">
+              Download MathPy
+            </button>
+
+            <button class="button button-secondary" onclick="showPage('docs')">
+              Read documentation
+            </button>
+          </div>
+
+        </div>
+
+
+        <div class="terminal">
+
+          <div class="terminal-top">
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-title">example.py</span>
+          </div>
+
+          <div class="terminal-code">
+
+            <span class="syntax-purple">from</span>
+            <span class="syntax-blue">mathpy</span>
+            <span class="syntax-purple">import</span>
+            solve
+
+            <br><br>
+
+            equation =
+            <span class="syntax-yellow">"4x² + 12x - 16 = 0"</span>
+
+            <br>
+
+            result = solve(equation)
+
+            <br><br>
+
+            <span class="syntax-blue">print</span>(result)
+
+            <br><br>
+
+            <span class="syntax-green">
+              [-4.0, 1.0]
+            </span>
+
+            <br><br>
+
+            <span style="color:#697782">
+              # completed in 0.000031 seconds
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat">
+        <strong>4,812×</strong>
+        <span>Peak benchmark</span>
+      </div>
+
+      <div class="stat">
+        <strong>0.03ms</strong>
+        <span>Median solve time</span>
+      </div>
+
+      <div class="stat">
+        <strong>97%</strong>
+        <span>Test coverage</span>
+      </div>
+
+      <div class="stat">
+        <strong>3.9M+</strong>
+        <span>Calculations / sec</span>
+      </div>
+
+    </div>
+
+
+    <section class="section">
+      <div class="container">
+
+        <div class="section-header">
+          <h2>Built for people who do math.</h2>
+          <p>
+            MathPy provides a compact API while keeping the heavy computation
+            underneath the surface.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Extreme performance</h3>
+            <p>
+              Optimized execution pipelines reduce Python overhead and process
+              large batches of mathematical operations extremely quickly.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">∫</div>
+            <h3>Symbolic solving</h3>
+            <p>
+              Solve equations, simplify expressions, factor polynomials and
+              manipulate symbolic mathematical expressions.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🐍</div>
+            <h3>Python first</h3>
+            <p>
+              Designed around familiar Python syntax so existing projects can
+              integrate MathPy without rewriting their architecture.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">∞</div>
+            <h3>Large workloads</h3>
+            <p>
+              Process thousands or millions of independent calculations using
+              optimized batch operations.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">√</div>
+            <h3>Numerical methods</h3>
+            <p>
+              High-speed numerical routines cover roots, interpolation,
+              matrices, statistics and common scientific workloads.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">◎</div>
+            <h3>Predictable API</h3>
+            <p>
+              Small, documented interfaces make MathPy easy to integrate into
+              scripts, research tools and production applications.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="section benchmark">
+
+      <div class="container">
+
+        <div class="section-header">
+          <h2>Performance benchmarks</h2>
+          <p>
+            Representative internal benchmarks comparing common mathematical
+            workloads.
+          </p>
+        </div>
+
+        <table class="benchmark-table">
+
+          <thead>
+            <tr>
+              <th>Operation</th>
+              <th>Python baseline</th>
+              <th>MathPy</th>
+              <th>Relative speed</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <td>Quadratic solving</td>
+              <td>2.81 ms</td>
+              <td>0.04 ms</td>
+              <td class="fast">70×</td>
+            </tr>
+
+            <tr>
+              <td>Polynomial expansion</td>
+              <td>8.41 ms</td>
+              <td>0.09 ms</td>
+              <td class="fast">93×</td>
+            </tr>
+
+            <tr>
+              <td>Batch arithmetic</td>
+              <td>421 ms</td>
+              <td>0.31 ms</td>
+              <td class="fast">1,358×</td>
+            </tr>
+
+            <tr>
+              <td>Expression simplification</td>
+              <td>193 ms</td>
+              <td>0.08 ms</td>
+              <td class="fast">2,412×</td>
+            </tr>
+
+            <tr>
+              <td>Large equation batch</td>
+              <td>1.72 s</td>
+              <td>0.36 ms</td>
+              <td class="fast">4,777×</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about" class="page">
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-header">
+          <h2>About MathPy</h2>
+          <p>
+            A focused mathematical computing environment built around speed,
+            predictable APIs and efficient execution.
+          </p>
+        </div>
+
+
+        <div class="about-grid">
+
+          <div class="about-box">
+            <h3>Our goal</h3>
+
+            <p>
+              MathPy began as an experiment into how quickly common mathematical
+              questions could be evaluated when the execution layer was designed
+              specifically for the workload.
+            </p>
+
+            <br>
+
+            <p>
+              The project has since evolved into a general-purpose mathematical
+              toolkit for Python developers who need fast answers without
+              manually optimizing every calculation.
+            </p>
+          </div>
+
+
+          <div class="about-box">
+            <h3>Designed differently</h3>
+
+            <p>
+              Rather than exposing every internal implementation detail, MathPy
+              provides a deliberately small interface. The engine decides how
+              each problem should be evaluated.
+            </p>
+
+            <br>
+
+            <p>
+              This allows future releases to improve the underlying engine while
+              keeping existing applications compatible.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div style="margin-top:55px">
+
+          <h3>Project history</h3>
+
+          <div class="timeline">
+
+            <div class="timeline-item">
+              <strong>2022</strong>
+              <h4>Initial prototype</h4>
+              <p>
+                The first MathPy prototype was created to evaluate batches of
+                algebraic expressions more efficiently.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <strong>2023</strong>
+              <h4>Symbolic engine introduced</h4>
+              <p>
+                Symbolic equation solving and expression simplification became
+                part of the core API.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <strong>2025</strong>
+              <h4>MathPy 4 architecture</h4>
+              <p>
+                The current execution architecture introduced optimized batch
+                processing and significantly reduced function overhead.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <strong>2026</strong>
+              <h4>MathPy 4.8</h4>
+              <p>
+                Current stable release with improved solving routines,
+                documentation and compatibility.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </section>
+
+
+  <!-- DISCUSSIONS -->
+
+  <section id="discussions" class="page">
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-header">
+          <h2>Discussions</h2>
+          <p>
+            Community questions, optimization discussions and MathPy
+            development conversations.
+          </p>
+        </div>
+
+
+        <div class="forum">
+
+          <div class="forum-header">
+            <strong>Latest discussions</strong>
+            <span class="online">● 184 members online</span>
+          </div>
+
+
+          <div class="thread" onclick="openThread('Why is MathPy so fast?')">
+            <div class="thread-title">
+              <span class="tag">Performance</span>
+              Why is MathPy so fast compared to normal Python?
+            </div>
+
+            <div class="thread-meta">
+              AlexR · 42 replies · 18 minutes ago
+            </div>
+          </div>
+
+
+          <div class="thread" onclick="openThread('Quadratic equations')">
+            <div class="thread-title">
+              <span class="tag">Help</span>
+              Best way to solve thousands of quadratic equations?
+            </div>
+
+            <div class="thread-meta">
+              numericalnerd · 17 replies · 1 hour ago
+            </div>
+          </div>
+
+
+          <div class="thread" onclick="openThread('MathPy 4.8 benchmarks')">
+            <div class="thread-title">
+              <span class="tag">Benchmark</span>
+              MathPy 4.8 benchmarks on Ryzen 7950X
+            </div>
+
+            <div class="thread-meta">
+              bytewizard · 29 replies · 3 hours ago
+            </div>
+          </div>
+
+
+          <div class="thread" onclick="openThread('Calculus support')">
+            <div class="thread-title">
+              <span class="tag">Question</span>
+              Does MathPy support symbolic derivatives?
+            </div>
+
+            <div class="thread-meta">
+              SamDev · 11 replies · 6 hours ago
+            </div>
+          </div>
+
+
+          <div class="thread" onclick="openThread('Migration guide')">
+            <div class="thread-title">
+              <span class="tag">Discussion</span>
+              Migrating a numerical project from NumPy
+            </div>
+
+            <div class="thread-meta">
+              dev_math · 36 replies · yesterday
+            </div>
+          </div>
+
+
+          <div class="thread" onclick="openThread('Feature requests')">
+            <div class="thread-title">
+              <span class="tag">Ideas</span>
+              What should MathPy 5.0 include?
+            </div>
+
+            <div class="thread-meta">
+              fastmath · 64 replies · 2 days ago
+            </div>
+          </div>
+
+        </div>
+
+
+        <div style="margin-top:15px">
+          <button class="button button-secondary" onclick="fakeNewThread()">
+            Start a discussion
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+  </section>
+
+
+  <!-- DOCUMENTATION -->
+
+  <section id="docs" class="page">
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-header">
+          <h2>Documentation</h2>
+          <p>
+            A quick introduction to the MathPy API.
+          </p>
+        </div>
+
+
+        <div class="about-box">
+
+          <h3>Installation</h3>
+
+          <div class="terminal" style="margin:18px 0">
+            <div class="terminal-code">
+              <span class="syntax-green">$</span>
+              pip install mathpy
+            </div>
+          </div>
+
+
+          <h3>Solving equations</h3>
+
+          <div class="terminal" style="margin:18px 0">
+
+            <div class="terminal-code">
+
+              <span class="syntax-purple">from</span>
+              mathpy
+              <span class="syntax-purple">import</span>
+              solve
+
+              <br><br>
+
+              answer = solve(
+              <span class="syntax-yellow">
+                "x² - 5x + 6 = 0"
+              </span>
+              )
+
+              <br><br>
+
+              <span class="syntax-blue">print</span>(answer)
+
+            </div>
+
+          </div>
+
+
+          <h3>Batch operations</h3>
+
+          <p style="color:var(--muted); margin-top:8px">
+            MathPy can process large collections of independent expressions
+            through the batch API.
+          </p>
+
+          <div class="terminal" style="margin-top:18px">
+
+            <div class="terminal-code">
+
+              expressions = [
+
+              <br>
+              &nbsp;&nbsp;
+              <span class="syntax-yellow">"2 + 2"</span>,
+
+              <br>
+              &nbsp;&nbsp;
+              <span class="syntax-yellow">"15 * 8"</span>,
+
+              <br>
+              &nbsp;&nbsp;
+              <span class="syntax-yellow">"sqrt(144)"</span>
+
+              <br>
+              ]
+
+              <br><br>
+
+              results = solve.batch(expressions)
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+
+        <div class="brand">
+          <div class="brand-mark">∑</div>
+          Math<span>Py</span>
+        </div>
+
+        <p class="footer-description" style="margin-top:14px">
+          High-performance mathematical computing for Python.
+          Fast enough to make ordinary mathematical workloads feel instant.
+        </p>
+
+      </div>
+
+
+      <div>
+        <h4>Product</h4>
+        <a onclick="showPage('home')">Features</a>
+        <a onclick="showPage('docs')">Documentation</a>
+        <a onclick="openDownload()">Downloads</a>
+        <a onclick="showPage('about')">Changelog</a>
+      </div>
+
+
+      <div>
+        <h4>Community</h4>
+        <a onclick="showPage('discussions')">Discussions</a>
+        <a onclick="fakeNewThread()">Feature requests</a>
+        <a onclick="fakeNewThread()">Report an issue</a>
+      </div>
+
+
+      <div>
+        <h4>Company</h4>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showLicense()">License</a>
+        <a onclick="showPrivacy()">Privacy</a>
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+      MathPy © 2026. All rights reserved. MathPy is a fictional demonstration
+      project.
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- DOWNLOAD MODAL -->
+
+<div id="downloadModal" class="modal">
+
+  <div class="modal-box">
+
+    <h3>Source Access</h3>
+
+    <p>
+      MathPy is closed source. Authorized developers may request access to the
+      source distribution using the project access password.
+    </p>
+
+    <input
+      id="passwordInput"
+      class="modal-input"
+      type="password"
+      placeholder="Source access password"
+      autocomplete="off"
+    >
+
+    <div class="modal-actions">
+
+      <button
+        class="button button-secondary"
+        onclick="closeDownload()"
+      >
+        Cancel
+      </button>
+
+      <button
+        class="button button-primary"
+        onclick="checkPassword()"
+      >
+        Authenticate
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  function showPage(page) {
+
+    document
+      .querySelectorAll(".page")
+      .forEach(function(element) {
+        element.classList.remove("active");
+      });
+
+    const target = document.getElementById(page);
+
+    if (target) {
+      target.classList.add("active");
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+
+  function openDownload() {
+
+    document
+      .getElementById("downloadModal")
+      .classList.add("open");
+
+    setTimeout(function() {
+
+      document
+        .getElementById("passwordInput")
+        .focus();
+
+    }, 50);
+  }
+
+
+  function closeDownload() {
+
+    document
+      .getElementById("downloadModal")
+      .classList.remove("open");
+
+    document
+      .getElementById("passwordInput")
+      .value = "";
+
+  }
+
+
+  function checkPassword() {
+
+    const password =
+      document.getElementById("passwordInput").value;
+
+    if (password === "simplechicken") {
+	window.location.href = "mathpylink.html"
+    } else {
+
+      alert(
+        "Authentication failed.\n\n" +
+        "The supplied password is not valid."
+      );
+
+    }
+
+  }
+
+
+  function openThread(title) {
+
+    alert(
+      title +
+      "\\n\\n" +
+      "This is a demonstration discussion thread. " +
+      "Replies are currently read-only."
+    );
+
+  }
+
+
+  function fakeNewThread() {
+
+    alert(
+      "You must be signed in to create a discussion.\\n\\n" +
+      "Account registration is currently invite-only."
+    );
+
+  }
+
+
+  function showLicense() {
+
+    alert(
+      "MathPy is closed-source proprietary software.\\n\\n" +
+      "Unauthorized redistribution is not permitted."
+    );
+
+  }
+
+
+  function showPrivacy() {
+
+    alert(
+      "Privacy Policy\\n\\n" +
+      "This demonstration site does not collect personal information."
+    );
+
+  }
+
+
+  document
+    .getElementById("downloadModal")
+    .addEventListener("click", function(event) {
+
+      if (event.target === this) {
+        closeDownload();
+      }
+
+    });
+
+
+  document
+    .getElementById("passwordInput")
+    .addEventListener("keydown", function(event) {
+
+      if (event.key === "Enter") {
+        checkPassword();
+      }
+
+      if (event.key === "Escape") {
+        closeDownload();
+      }
+
+    });
+
+</script>
+
+</body>
+</html>
+
