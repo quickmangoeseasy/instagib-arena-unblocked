@@ -1,0 +1,1013 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In | Mango Learning</title>
+
+
+    <style>
+
+        /* =========================================
+           GLOBAL
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+
+            font-family:
+                Inter,
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #182230;
+
+            background: #f6f8fb;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .navbar {
+            height: 76px;
+
+            padding: 0 7%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background: white;
+
+            border-bottom:
+                1px solid #e6eaf0;
+        }
+
+        .logo {
+            font-size: 24px;
+
+            font-weight: 800;
+
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            font-weight: 400;
+        }
+
+        .navbar nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 30px;
+        }
+
+        .navbar nav a {
+            color: #596678;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition:
+                color .2s ease,
+                transform .2s ease;
+        }
+
+        .navbar nav a:hover {
+            color: #182230;
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* =========================================
+           LOGIN BACKGROUND
+        ========================================= */
+
+        .login-container {
+
+            min-height:
+                calc(100vh - 76px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 70px 20px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(255, 211, 92, .18),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(91, 140, 255, .14),
+                    transparent 30%
+                ),
+
+                #f6f8fb;
+        }
+
+
+        .login-container::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+
+            height: 500px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.55);
+
+            top: -250px;
+
+            right: -150px;
+
+            pointer-events: none;
+        }
+
+
+        .login-container::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 350px;
+
+            height: 350px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.5);
+
+            bottom: -180px;
+
+            left: -100px;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+           LOGIN CARD
+        ========================================= */
+
+        .login-card {
+
+            width: 100%;
+
+            max-width: 455px;
+
+            padding: 42px;
+
+            position: relative;
+
+            z-index: 2;
+
+            background:
+                rgba(255,255,255,.95);
+
+            border:
+                1px solid #e1e6ed;
+
+            border-radius: 24px;
+
+            box-shadow:
+
+                0 30px 80px
+                rgba(28,40,58,.12),
+
+                0 5px 20px
+                rgba(28,40,58,.05);
+
+            text-align: center;
+
+            animation:
+                loginEnter .55s
+                cubic-bezier(.2,.8,.2,1);
+        }
+
+
+        @keyframes loginEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(25px)
+                    scale(.97);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        /* =========================================
+           MANGO ICON
+        ========================================= */
+
+        .login-icon {
+
+            width: 72px;
+
+            height: 72px;
+
+            margin:
+                0 auto 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #fff7d6,
+                    #ffeaa3
+                );
+
+            border:
+                1px solid #f4df8d;
+
+            border-radius: 20px;
+
+            font-size: 34px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(218,176,48,.18);
+
+            animation:
+                mangoFloat 3s
+                ease-in-out infinite;
+        }
+
+
+        @keyframes mangoFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-5px);
+            }
+        }
+
+
+        /* =========================================
+           HEADING
+        ========================================= */
+
+        .eyebrow {
+
+            color: #7b8797;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            font-weight: 900;
+
+            margin-bottom: 8px;
+        }
+
+
+        .login-card h1 {
+
+            margin: 0;
+
+            color: #111923;
+
+            font-size: 42px;
+
+            font-weight: 850;
+
+            letter-spacing: -2px;
+
+            line-height: 1.05;
+        }
+
+
+        .subtitle {
+
+            max-width: 330px;
+
+            margin:
+                13px auto 30px;
+
+            color: #788495;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        #loginForm {
+
+            text-align: left;
+        }
+
+
+        #loginForm label {
+
+            display: block;
+
+            margin:
+                17px 0 7px;
+
+            color: #364152;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        #loginForm input {
+
+            width: 100%;
+
+            height: 50px;
+
+            padding:
+                0 15px;
+
+            background: #f9fafc;
+
+            color: #182230;
+
+            border:
+                1px solid #dfe4eb;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            transition:
+                background .2s ease,
+                border-color .2s ease,
+                box-shadow .2s ease,
+                transform .2s ease;
+        }
+
+
+        #loginForm input::placeholder {
+
+            color: #a1aab7;
+        }
+
+
+        #loginForm input:hover {
+
+            background: white;
+        }
+
+
+        #loginForm input:focus {
+
+            background: white;
+
+            border-color: #182230;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(24,34,48,.07);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* =========================================
+           BUTTON
+        ========================================= */
+
+        #loginForm button {
+
+            width: 100%;
+
+            height: 52px;
+
+            margin-top: 25px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #182230,
+                    #2c3949
+                );
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 22px
+                rgba(24,34,48,.16);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                filter .2s ease;
+        }
+
+
+        #loginForm button:hover {
+
+            transform:
+                translateY(-2px);
+
+            filter:
+                brightness(1.08);
+
+            box-shadow:
+                0 15px 30px
+                rgba(24,34,48,.22);
+        }
+
+
+        #loginForm button:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =========================================
+           ERROR
+        ========================================= */
+
+        .error-message {
+
+            min-height: 18px;
+
+            margin:
+                11px 0 0;
+
+            color: #c0392b;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           DIVIDER
+        ========================================= */
+
+        .login-divider {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin:
+                26px 0 16px;
+
+            color: #a1aab6;
+
+            font-size: 8px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        .login-divider::before,
+        .login-divider::after {
+
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background: #e1e6ec;
+        }
+
+
+        /* =========================================
+           DEMO ACCOUNT
+        ========================================= */
+
+        .demo-box {
+
+            padding: 17px;
+
+            text-align: left;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8fafc,
+                    #f3f6f9
+                );
+
+            border:
+                1px solid #e5e9ef;
+
+            border-radius: 12px;
+        }
+
+
+        .demo-box strong {
+
+            display: block;
+
+            color: #293544;
+
+            font-size: 12px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .demo-box p {
+
+            margin:
+                0 0 13px;
+
+            color: #84909f;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        .demo-credentials {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 9px;
+        }
+
+
+        .demo-credentials div {
+
+            padding:
+                10px 11px;
+
+            background: white;
+
+            border:
+                1px solid #e1e6ec;
+
+            border-radius: 8px;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
+        }
+
+
+        .demo-credentials div:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 6px 15px
+                rgba(30,40,60,.07);
+        }
+
+
+        .demo-credentials span {
+
+            display: block;
+
+            color: #99a3af;
+
+            font-size: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            font-weight: 900;
+
+            margin-bottom: 3px;
+        }
+
+
+        .demo-credentials code {
+
+            color: #273443;
+
+            font-size: 11px;
+
+            font-family:
+                monospace;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           FOOTER LINK
+        ========================================= */
+
+        .login-footer {
+
+            margin:
+                22px 0 0;
+
+            color: #8994a2;
+
+            font-size: 11px;
+        }
+
+
+        .login-footer a {
+
+            color: #182230;
+
+            font-weight: 800;
+        }
+
+
+        .login-footer a:hover {
+
+            opacity: .65;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 520px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .navbar nav {
+                gap: 12px;
+            }
+
+            .navbar nav a {
+                font-size: 12px;
+            }
+
+            .login-container {
+                padding:
+                    35px 15px;
+            }
+
+            .login-card {
+                padding:
+                    32px 22px;
+
+                border-radius: 20px;
+            }
+
+            .login-card h1 {
+                font-size: 35px;
+            }
+
+            .login-icon {
+                width: 62px;
+                height: 62px;
+
+                font-size: 29px;
+            }
+
+            .demo-credentials {
+                grid-template-columns:
+                    1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="logo">
+        Mango<span>Learning</span>
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+        <a href="login.html">
+            Sign In
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<main class="login-container">
+
+
+    <section class="login-card">
+
+
+        <div class="login-icon">
+            🥭
+        </div>
+
+
+        <p class="eyebrow">
+            MANGO LEARNING
+        </p>
+
+
+        <h1>
+            Welcome back
+        </h1>
+
+
+        <p class="subtitle">
+            Sign in to continue your personalized
+            learning experience.
+        </p>
+
+
+
+        <form id="loginForm">
+
+
+            <label for="username">
+                Username
+            </label>
+
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter your username"
+                autocomplete="off"
+                required
+            >
+
+
+
+            <label for="password">
+                Password
+            </label>
+
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                required
+            >
+
+
+
+            <button type="submit">
+                Sign In →
+            </button>
+
+
+        </form>
+
+
+
+        <p
+            id="errorMessage"
+            class="error-message">
+        </p>
+
+
+
+        <div class="login-divider">
+
+            <span>
+                DEMO ENVIRONMENT
+            </span>
+
+        </div>
+
+
+
+        <div class="demo-box">
+
+            <strong>
+                Demo Account
+            </strong>
+
+            <p>
+                This fictional site uses a local demonstration account.
+                No credentials are transmitted anywhere.
+            </p>
+
+
+            <div class="demo-credentials">
+
+                <div>
+
+                    <span>
+                        Username
+                    </span>
+
+                    <code>
+                        aavymango
+                    </code>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Password
+                    </span>
+
+                    <code>
+                        chicken
+                    </code>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <p class="login-footer">
+
+            Don't have an account?
+
+            <a href="index.html#pricing">
+                Start your free trial
+            </a>
+
+        </p>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script>
+
+    const DEMO_USERNAME =
+        "aavymango";
+
+    const DEMO_PASSWORD =
+        "chicken";
+
+
+    document
+        .getElementById("loginForm")
+        .addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const username =
+                    document
+                        .getElementById("username")
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById("password")
+                        .value;
+
+
+                const errorMessage =
+                    document
+                        .getElementById("errorMessage");
+
+
+                if (
+                    username === DEMO_USERNAME &&
+                    password === DEMO_PASSWORD
+                ) {
+
+                    errorMessage.textContent = "";
+
+                    window.location.href =
+                        "dashboard.html";
+
+                }
+
+                else {
+
+                    errorMessage.textContent =
+                        "Incorrect demo username or password.";
+
+                }
+
+            }
+        );
+
+</script>
+
+
+</body>
+
+</html>
+```
